@@ -1,7 +1,15 @@
-import { add } from '../src';
+import { IssueMaker } from '../src';
 
-describe('testing add function', () => {
-  test('2+9 should be 11', () => {
-    expect(add(2, 9)).toBe(11);
-  });
+const gitlab = new IssueMaker({
+  service: 'gitlab',
+  endPoint: 'http://117.247.186.100:9898',
+  privateToken: 'QtHVSf1hvAeCqd6Bu7-X',
+  projectId: 938,
 });
+
+gitlab
+  .reportIssue({
+    title: 'testing from issue-maker',
+  })
+  .then(() => console.log('issue-reported'))
+  .catch(err => console.log(err));

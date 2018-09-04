@@ -12,6 +12,7 @@ No, this will not be an issue maker. I promise.
 
 ![](https://cataas.com/cat)
 
+<!--
 ## Install
 
 With npm
@@ -39,6 +40,7 @@ Describe usage
 ## Change log
 
 brief change log
+-->
 
 Version of [ts-np-generator](https://github.com/vajahath/generator-ts-np) used: [![used version of ts-np generator](https://img.shields.io/badge/ts--np-v2.0.5-a5a5a5.svg?style=flat-square)](https://github.com/vajahath/generator-ts-np)
 

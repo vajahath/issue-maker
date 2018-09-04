@@ -1,47 +1,36 @@
-import { gitlab } from './gitlab';
+/**
+ * interfaces
+ */
+import { IIssueMakerParams } from './issue-maker-params.interface';
+import { IReportIssueParams } from './report-issue-params.interface';
+import { IService } from './service-class.interface';
 
-export interface IIssueMakerParams {
-  // now supports only gitlab
-  service: 'gitlab';
-  projectId: string | number;
-  endPoint: string;
-  privateToken: string;
-}
+// defaults
+import { defaultReportIssueParams } from './default-report-issue-params';
 
-export interface IReportIssueParams {
-  title: string;
-  description?: string;
-  confidential?: boolean;
-  assignee_ids?: number[];
-  milestone_id?: number;
-  labels?: string[] | string;
-  weight?: number;
-}
+/**
+ * services
+ */
+// import { gitlab } from './services';
 
-const defaultReportIssueParams: IReportIssueParams = {
-  title: 'untitled',
-  description: 'no description provided',
-  confidential: false,
-  labels: ['by-issue-maker'],
-};
+/**
+ * for conveniently importing by client libs
+ */
+export { IIssueMakerParams, IReportIssueParams, IService };
 
-export interface IService {
-  reportIssue: (
-    params: IReportIssueParams,
-    endPoint: string,
-    projectId: string | number,
-    privateToken: string,
-  ) => Promise<any>;
-}
-
+/**
+ * main class
+ */
 export class IssueMaker {
-  protected service: IService;
-  protected endPoint: string;
-  protected projectId: string | number;
-  protected privateToken: string;
+  private service: IService;
+  private endPoint: string;
+  private projectId: string | number;
+  private privateToken: string;
 
   constructor(params: IIssueMakerParams) {
+    // selectively import
     if (params.service === 'gitlab') {
+      const { gitlab } = require('./services');
       this.service = gitlab;
     }
     this.endPoint = params.endPoint;

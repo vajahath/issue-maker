@@ -1,5 +1,6 @@
-import { IService, IReportIssueParams } from '.';
 import * as got from 'got';
+
+import { IReportIssueParams, IService } from '..';
 
 class GitlabService implements IService {
   public async reportIssue(

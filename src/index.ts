@@ -1,18 +1,21 @@
 /**
  * interfaces
  */
+import { Request } from 'express';
+
 import { IIssueMakerParams } from './issue-maker-params.interface';
 import { IReportIssueParams } from './report-issue-params.interface';
 import { IService } from './service-class.interface';
+import { RequestError } from './error-types/express-request-error';
+import {
+  expressRequestErrorParser,
+  IExpressRequestErrorParser,
+} from './templating/express-request-error-parser';
 
 // defaults
 import { defaultReportIssueParams } from './default-report-issue-params';
 
-/**
- * services
- */
-// import { gitlab } from './services';
-
+import { issueIdMaker } from './templating/issue-id-maker';
 /**
  * for conveniently importing by client libs
  */
@@ -43,6 +46,47 @@ export class IssueMaker {
 
     await this.service.reportIssue(
       completeParams,
+      this.endPoint,
+      this.projectId,
+      this.privateToken,
+    );
+  }
+
+  public async expressReportError(
+    req: Request,
+    err: RequestError,
+    options: IExpressRequestErrorParser,
+  ) {
+    const issueMakerId = issueIdMaker(req, err);
+
+    // search for issue
+    const searchResult = await this.service.searchForIssue(
+      issueMakerId,
+      this.endPoint,
+      this.projectId,
+      this.privateToken,
+    );
+
+    // if no such issues, create one
+    if (!searchResult) {
+      await this.reportIssue(
+        await expressRequestErrorParser(req, err, options),
+      );
+      return;
+    }
+
+    // if one exists(closed), reopen it and comment on it
+    if (searchResult.status === 'closed') {
+      await this.service.reopenIssue(
+        searchResult.issueId,
+        this.endPoint,
+        this.projectId,
+        this.privateToken,
+      );
+    }
+
+    await this.service.commentOnIssue(
+      searchResult.issueIid,
       this.endPoint,
       this.projectId,
       this.privateToken,

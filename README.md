@@ -1,5 +1,6 @@
 # issue-maker
 
+## Beta(dont use this)
 No, this will not be an issue maker. I promise.
 
 [![npm](https://img.shields.io/npm/v/issue-maker.svg)](https://www.npmjs.com/package/issue-maker)

@@ -29,6 +29,7 @@ const PRETTIER_IGNORE = [
   '!**/*.*-',
   '!**/*.sql',
   '!**/*.txt',
+  '!**/*.md',
 ];
 
 const PRETTIER_CONFIG = {

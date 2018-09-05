@@ -10,3 +10,4 @@ node_modules
 *.*-
 *.sql
 .gitkeep
+*.md

@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 import { IssueMaker } from '../src';
 
 const gitlab = new IssueMaker({

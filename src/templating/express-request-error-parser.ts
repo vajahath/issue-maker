@@ -9,7 +9,7 @@ const readFile = promisify(_readFile);
 
 import { issueIdMaker } from './issue-id-maker';
 
-import { RequestError } from '../error-types/express-request-error';
+import { ExpressRequestError } from '../error-types/express-request-error';
 import { IReportIssueParams } from '../report-issue-params.interface';
 
 export interface IExpressRequestErrorParser {
@@ -21,7 +21,7 @@ export interface IExpressRequestErrorParser {
 
 export async function expressRequestErrorParser(
   req: Request,
-  err: RequestError,
+  err: ExpressRequestError,
   options: IExpressRequestErrorParser,
 ): Promise<IReportIssueParams> {
   const queryOrParam = Object.keys(req.query).length ? '(Query)' : '';
@@ -44,7 +44,7 @@ export async function expressRequestErrorParser(
 
 async function makeDescription(
   req: Request,
-  err: RequestError,
+  err: ExpressRequestError,
   options: IExpressRequestErrorParser,
 ) {
   const template = (await readFile(

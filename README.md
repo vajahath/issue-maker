@@ -1,7 +1,7 @@
 # issue-maker
+No, this will not be an issue maker. I promise.
 
 ## Beta(dont use this)
-No, this will not be an issue maker. I promise.
 
 [![npm](https://img.shields.io/npm/v/issue-maker.svg)](https://www.npmjs.com/package/issue-maker)
 [![Travis](https://img.shields.io/travis/vajahath/issue-maker.svg)](https://travis-ci.org/vajahath/issue-maker)
@@ -12,7 +12,6 @@ No, this will not be an issue maker. I promise.
 <!-- [![npm](https://img.shields.io/npm/dt/issue-maker.svg)]() -->
 
 ![](https://cataas.com/cat)
-
 <!--
 ## Install
 

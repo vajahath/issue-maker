@@ -7,7 +7,6 @@ import { Request } from 'express';
 import { IIssueMakerParams } from './issue-maker-params.interface';
 import { IReportIssueParams } from './report-issue-params.interface';
 import { IService } from './service-class.interface';
-import { RequestError } from './error-types/express-request-error';
 import {
   expressRequestErrorParser,
   IExpressRequestErrorParser,
@@ -17,10 +16,20 @@ import {
 import { defaultReportIssueParams } from './default-report-issue-params';
 
 import { issueIdMaker } from './templating/issue-id-maker';
+import {
+  ExpressRequestError,
+  ExpressRequestErrorType,
+} from './error-types/express-request-error';
 /**
  * for conveniently importing by client libs
  */
-export { IIssueMakerParams, IReportIssueParams, IService };
+export {
+  IIssueMakerParams,
+  IReportIssueParams,
+  IService,
+  ExpressRequestError,
+  ExpressRequestErrorType,
+};
 
 /**
  * main class
@@ -55,7 +64,7 @@ export class IssueMaker {
 
   public async expressReportError(
     req: Request,
-    err: RequestError,
+    err: ExpressRequestError,
     options: IExpressRequestErrorParser,
   ) {
     const issueMakerId = issueIdMaker(req, err);

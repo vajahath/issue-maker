@@ -1,6 +1,6 @@
 import * as serializeError from 'serialize-error';
 
-export enum RequestErrorType {
+export enum ExpressRequestErrorType {
   'NOT_FOUND',
   'UNPROCESSABLE_ENTITY',
   'LOGIN_FAILED',
@@ -12,52 +12,52 @@ export enum RequestErrorType {
 }
 
 export const ERROR_DEFINITIONS = {
-  [RequestErrorType.NOT_FOUND]: {
+  [ExpressRequestErrorType.NOT_FOUND]: {
     statusCode: 404,
     message: 'The requested resource is not found on server',
   },
-  [RequestErrorType.UNPROCESSABLE_ENTITY]: {
+  [ExpressRequestErrorType.UNPROCESSABLE_ENTITY]: {
     statusCode: 422,
     message: 'Validation err',
   },
-  [RequestErrorType.LOGIN_FAILED]: {
+  [ExpressRequestErrorType.LOGIN_FAILED]: {
     statusCode: 401,
     message: 'Invalid credentials',
   },
-  [RequestErrorType.INTERNAL_SERVER_ERROR]: {
+  [ExpressRequestErrorType.INTERNAL_SERVER_ERROR]: {
     statusCode: 500,
     message:
       'Internal server fault, Something went wrong while trying to process your request',
   },
-  [RequestErrorType.CUSTOM]: {
+  [ExpressRequestErrorType.CUSTOM]: {
     statusCode: 500,
     message: 'Unexpected err',
   },
-  [RequestErrorType.BAD_REQUEST]: {
+  [ExpressRequestErrorType.BAD_REQUEST]: {
     statusCode: 400,
     message: 'Bad Request',
   },
-  [RequestErrorType.CONFLICT]: {
+  [ExpressRequestErrorType.CONFLICT]: {
     statusCode: 409,
     message:
       'The request could not be completed due to a conflict with the current state of the target resource',
   },
-  [RequestErrorType.FORBIDDEN]: {
+  [ExpressRequestErrorType.FORBIDDEN]: {
     statusCode: 403,
     message: 'The server understood the request but refuses to authorize it.',
   },
 };
 
-export class RequestError {
+export class ExpressRequestError {
   public err: string;
   public statusCode: number;
   public message: string;
   public details: any;
 
-  private errType: RequestErrorType;
+  private errType: ExpressRequestErrorType;
 
   constructor(
-    errorType: RequestErrorType,
+    errorType: ExpressRequestErrorType,
     details?: any,
     statusCode?: number,
     message?: string,
@@ -65,7 +65,7 @@ export class RequestError {
     // for accessing member functions
     this.errType = errorType;
 
-    this.err = RequestErrorType[errorType];
+    this.err = ExpressRequestErrorType[errorType];
     this.statusCode = statusCode || this.getStatusCode();
     this.message = message || this.getMessage();
     this.details = serializeError(details);

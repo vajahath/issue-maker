@@ -21,6 +21,7 @@ import { issueIdMaker } from './templating/issue-id-maker';
 import {
   ExpressRequestError,
   ExpressRequestErrorType,
+  ERROR_DEFINITIONS,
 } from './error-types/express-request-error';
 /**
  * for conveniently importing by client libs
@@ -31,6 +32,7 @@ export {
   IService,
   ExpressRequestError,
   ExpressRequestErrorType,
+  ERROR_DEFINITIONS,
 };
 
 /**

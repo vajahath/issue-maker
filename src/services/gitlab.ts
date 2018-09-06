@@ -1,3 +1,5 @@
+// tslint:disable:no-console
+
 import * as got from 'got';
 
 import { IReportIssueParams, IService } from '..';
@@ -16,36 +18,40 @@ class GitlabService implements IService {
           method: 'POST',
           headers: {
             'PRIVATE-TOKEN': privateToken,
+            Accept: 'application/json',
           },
         },
       );
+      console.log('>> commented on issue');
     } catch (err) {
       // tslint:disable-next-line:no-console
-      console.error('ERROR OCCURRED IN ISSUE-MAKER', err.response.body);
-      throw err.response;
+      console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
+      throw err;
     }
   }
 
   public async reopenIssue(
-    issueId: string | number,
+    issueIid: string | number,
     endPoint: string,
     projectId: string | number,
     privateToken: string,
   ) {
     try {
       await got(
-        `${endPoint}/api/v4/projects/${projectId}/issues/${issueId}?state_event=reopen`,
+        `${endPoint}/api/v4/projects/${projectId}/issues/${issueIid}?state_event=reopen`,
         {
           method: 'PUT',
           headers: {
             'PRIVATE-TOKEN': privateToken,
+            Accept: 'application/json',
           },
         },
       );
+      console.log('>> reopened issue');
     } catch (err) {
       // tslint:disable-next-line:no-console
-      console.error('ERROR OCCURRED IN ISSUE-MAKER', err.response.body);
-      throw err.response;
+      console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
+      throw err;
     }
   }
 
@@ -62,24 +68,31 @@ class GitlabService implements IService {
           method: 'GET',
           headers: {
             'PRIVATE-TOKEN': privateToken,
+            Accept: 'application/json',
           },
         },
       );
 
-      if (result.body.length === 1) {
-        const res: any = result.body[0];
+      if (!result.body) {
+        return null;
+      }
+
+      const body: any[] = JSON.parse(result.body);
+
+      if (body.length === 1) {
+        const res: any = body[0];
         return {
           issueId: res.id,
           issueIid: res.iid,
-          status: res.status,
+          state: res.state,
         };
       } else {
         return null;
       }
     } catch (err) {
       // tslint:disable-next-line:no-console
-      console.error('ERROR OCCURRED IN ISSUE-MAKER', err.response.body);
-      throw err.response;
+      console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
+      throw err;
     }
   }
 
@@ -99,14 +112,17 @@ class GitlabService implements IService {
         method: 'POST',
         headers: {
           'PRIVATE-TOKEN': privateToken,
+          Accept: 'application/json',
         },
         json: true,
         body: params,
       });
+
+      console.log('>> issue reported');
     } catch (err) {
       // tslint:disable-next-line:no-console
-      console.error('ERROR OCCURRED IN ISSUE-MAKER', err.response.body);
-      throw err.response;
+      console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
+      throw err;
     }
   }
 }

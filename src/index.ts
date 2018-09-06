@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 /**
  * interfaces
  */
@@ -75,10 +76,11 @@ export class IssueMaker {
       return;
     }
 
+    console.log('searchResult.status', searchResult.state);
     // if one exists(closed), reopen it and comment on it
-    if (searchResult.status === 'closed') {
+    if (searchResult.state === 'closed') {
       await this.service.reopenIssue(
-        searchResult.issueId,
+        searchResult.issueIid,
         this.endPoint,
         this.projectId,
         this.privateToken,

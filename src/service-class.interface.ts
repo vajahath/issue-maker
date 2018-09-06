@@ -16,7 +16,7 @@ export interface IService {
   ) => Promise<null | {
     issueIid: number;
     issueId: number;
-    status: 'open' | 'closed';
+    state: 'opened' | 'closed';
   }>;
 
   reopenIssue: (

@@ -29,6 +29,6 @@
 | `req.body`     | `<%= reqBody %>`       |
 | `req.query`    | `<%= reqQuery %>`      |
 | `res.locals`   | `<%= resLocals %>`     |
-| req ip         | `<%= reqIp %>`         |
+| req ip         | `<%= requestIp %>`     |
 
 > Reported by issue-maker lib

@@ -1,5 +1,3 @@
-// tslint:disable:no-console
-
 import * as got from 'got';
 
 import { IReportIssueParams, IService } from '..';
@@ -22,7 +20,6 @@ class GitlabService implements IService {
           },
         },
       );
-      console.log('>> commented on issue');
     } catch (err) {
       // tslint:disable-next-line:no-console
       console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
@@ -47,7 +44,6 @@ class GitlabService implements IService {
           },
         },
       );
-      console.log('>> reopened issue');
     } catch (err) {
       // tslint:disable-next-line:no-console
       console.error('ERROR OCCURRED IN ISSUE-MAKER', err);
@@ -117,8 +113,6 @@ class GitlabService implements IService {
         json: true,
         body: params,
       });
-
-      console.log('>> issue reported');
     } catch (err) {
       // tslint:disable-next-line:no-console
       console.error('ERROR OCCURRED IN ISSUE-MAKER', err);

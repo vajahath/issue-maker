@@ -1,19 +1,21 @@
-> This issue is created by [issue-maker](https://www.npmjs.com/package/issue-maker) lib.<br>**Issue Identifier:** `<%- issueId %>`<br>_Tip: remove the Issue Identifier to detach this issue from future manipulations by issue-maker lib_
+:eye: This issue is created by [issue-maker](https://www.npmjs.com/package/issue-maker) lib.<br>:id: **Issue Identifier:** `<%- issueId %>`<br>:scissors: _Tip: remove the Issue Identifier to detach this issue from future manipulations by issue-maker lib_
 
-## Error Message
+---
+
+## :crab: Error Message
 
 <%- mainErrMsg %>
 
-## Env Details
+## :cactus: Env Details
 
-| prop              | value                    |
+| property          | value                    |
 | ----------------- | ------------------------ |
 | time              | `<%- time %>`            |
 | ENV_USER          | `<%- envUser %>`         |
 | host              | `<%- host %>`            |
 | NODE_ENV          | `<%- nodeEnv %>`         |
 | NODE_APP_INSTANCE | `<%- nodeAppInstance %>` |
-| database Name     | `<%- databaseName %>`    |
+| database Name     | ` <%- databaseName %>`   |
 
 #### NODE_CONFIG
 
@@ -27,14 +29,13 @@
 <%- databaseHost %>
 ```
 
-## Error Details
+## :squid: Error Details
 
-| prop           | value                  |
+| property       | value                  |
 | -------------- | ---------------------- |
 | request origin | `<%- requestOrigin %>` |
 | requested url  | `<%- requestedUrl %>`  |
 | request method | `<%- requestMethod %>` |
-| req ip         | `<%- requestIp %>`     |
 
 #### error details
 
@@ -66,4 +67,12 @@
 <%- resLocals %>
 ```
 
-> Reported by [issue-maker](https://www.npmjs.com/package/issue-maker) lib
+#### req ip
+
+```
+<%- requestIp %>
+```
+
+---
+
+[issue-maker](https://www.npmjs.com/package/issue-maker) loves you :cupid:

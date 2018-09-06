@@ -1,4 +1,3 @@
-// tslint:disable:no-console
 /**
  * interfaces
  */
@@ -7,6 +6,9 @@ import { Request } from 'express';
 import { IIssueMakerParams } from './issue-maker-params.interface';
 import { IReportIssueParams } from './report-issue-params.interface';
 import { IService } from './service-class.interface';
+import * as log from 'fancy-log';
+import * as chalk from 'chalk';
+
 import {
   expressRequestErrorParser,
   IExpressRequestErrorParser,
@@ -82,10 +84,10 @@ export class IssueMaker {
       await this.reportIssue(
         await expressRequestErrorParser(req, err, options),
       );
+      log(chalk.red('[issue-maker]') + ' issue reported');
       return;
     }
 
-    console.log('searchResult.status', searchResult.state);
     // if one exists(closed), reopen it and comment on it
     if (searchResult.state === 'closed') {
       await this.service.reopenIssue(
@@ -93,6 +95,9 @@ export class IssueMaker {
         this.endPoint,
         this.projectId,
         this.privateToken,
+      );
+      log(
+        chalk.red('[issue-maker]') + ' reopened already reported closed issue',
       );
     }
 
@@ -102,5 +107,6 @@ export class IssueMaker {
       this.projectId,
       this.privateToken,
     );
+    log(chalk.red('[issue-maker]') + ' commented on issue');
   }
 }

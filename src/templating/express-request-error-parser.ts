@@ -72,7 +72,7 @@ async function makeDescription(
     nodeConfig: process.env.NODE_CONFIG || 'n/a',
     nodeAppInstance: process.env.NODE_APP_INSTANCE || 'n/a',
     databaseHost: options.databaseHost,
-    databaseName: options.databaseName,
+    databaseName: options.databaseName || ' ',
     host: await v4(),
     // err details
     requestOrigin: req.hostname,
@@ -92,9 +92,9 @@ async function makeDescription(
     reqHeaders: JSON.stringify(req.headers, null, 2),
     reqBody: JSON.stringify(req.body, null, 2),
     reqQuery: JSON.stringify(req.query, null, 2),
-    requestIp: `> x-forwarded-for: ${req.headers['x-forwarded-for']} |
-    > req.connection.remoteAddress: ${req.connection.remoteAddress} |
-    > req.ip: ${req.ip} |`,
+    xForwardedFor: req.headers['x-forwarded-for'] || ' ',
+    reqConnectionRemoteAddress: req.connection.remoteAddress || ' ',
+    reqIp: req.ip || ' ',
   });
 
   // console.log(description);

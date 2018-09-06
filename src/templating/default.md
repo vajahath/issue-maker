@@ -8,14 +8,14 @@
 
 ## :cactus: Env Details
 
-| property          | value                    |
+| **property**      | **value**                |
 | ----------------- | ------------------------ |
 | time              | `<%- time %>`            |
 | ENV_USER          | `<%- envUser %>`         |
 | host              | `<%- host %>`            |
 | NODE_ENV          | `<%- nodeEnv %>`         |
 | NODE_APP_INSTANCE | `<%- nodeAppInstance %>` |
-| database Name     | ` <%- databaseName %>`   |
+| database Name     | `<%- databaseName %>`    |
 
 #### NODE_CONFIG
 
@@ -31,11 +31,14 @@
 
 ## :squid: Error Details
 
-| property       | value                  |
-| -------------- | ---------------------- |
-| request origin | `<%- requestOrigin %>` |
-| requested url  | `<%- requestedUrl %>`  |
-| request method | `<%- requestMethod %>` |
+| **property**                 | **value**                           |
+| ---------------------------- | ----------------------------------- |
+| request origin               | `<%- requestOrigin %>`              |
+| requested url                | `<%- requestedUrl %>`               |
+| request method               | `<%- requestMethod %>`              |
+| x-forwarded-for header       | `<%- xForwardedFor %>`              |
+| req.connection.remoteAddress | `<%- reqConnectionRemoteAddress %>` |
+| req.ip                       | `<%- reqIp %>`                      |
 
 #### error details
 
@@ -65,12 +68,6 @@
 
 ```
 <%- resLocals %>
-```
-
-#### req ip
-
-```
-<%- requestIp %>
 ```
 
 ---

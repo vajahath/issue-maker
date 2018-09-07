@@ -1,4 +1,9 @@
-:eye: This issue is created by [issue-maker](https://www.npmjs.com/package/issue-maker) lib.<br>:id: **Issue Identifier:** `<%- issueId %>`<br>:scissors: _Tip: remove the Issue Identifier to detach this issue from future manipulations by issue-maker lib_
+:eye: This issue is created by [issue-maker](https://www.npmjs.com/package/issue-maker) lib.
+<br>:id: **Issue Identifier:**
+```
+<%- issueId %>
+```
+:scissors: _Tip: remove the Issue Identifier to detach this issue from future manipulations by issue-maker lib_
 
 ---
 

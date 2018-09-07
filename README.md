@@ -7,6 +7,8 @@ No, this will not be an issue maker. I promise.
 [![Built with generator-ts-np](https://img.shields.io/badge/scaffolding-ts_np-2699ad.svg)](https://github.com/vajahath/generator-ts-np)
 [![npm](https://img.shields.io/npm/dt/issue-maker.svg)](https://www.npmjs.com/package/issue-maker)
 
+![inbox](media/logo.png)
+
 ## What
 
 Helps you to report issues to issue trackers like github or gitlab. Currently gitlab is the only supported service. You can improve this package to add multiple services like github/trello/jira etc.
@@ -24,6 +26,8 @@ You don't have to install type definitions for typescript. It's built in.
 ### How it works
 
 At present only gitlab is supported. This package access [gitlab apis(v4)](https://docs.gitlab.com/ce/api/) behind the scenes.
+
+The real use comes [when used with express](#for-applications-running-in-express)
 
 ## Normal Usage
 

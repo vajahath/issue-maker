@@ -67,17 +67,19 @@ gitlab.reportIssue({
   .catch(err=>console.log('err occurred', err));
 ```
 
-## For applications running in [express](https://expressjs.com)
+# For applications running in [express](https://expressjs.com)
+
+![cat](media/cat.jpeg)
 
 Issue maker leverages its full superpower when used with express.
 
-### Features
+## Features
 
 * Easily create an issue
 * Issue-maker comments on the same issue if the issue happens again. Will not create a new issue.
 * If a closed issue is again occurred, issue-maker reopen the issue and comments on it.
 
-### How
+## How
 
 You need a common error format for this to work. Import that error class
 

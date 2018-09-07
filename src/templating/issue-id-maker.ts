@@ -11,5 +11,7 @@ export function issueIdMaker(req: Request, err: ExpressRequestError) {
     .join('_')
     .split(' ')
     .join('')
+    .split('`')
+    .join('')
     .toLowerCase();
 }

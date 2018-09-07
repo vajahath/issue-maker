@@ -105,7 +105,7 @@ your common err handler looks like: _(here is where you call the issue-maker)_
 app.use(requestErrHandler);
 
 function requestErrHandler(err, req, res, next){
-  if (err.statusCode >= 500) {
+  if (err.statusCode >= 500 && err instanceof ExpressRequestError) {
     gitlabIssue.expressReportError(req, err, {
       labels: 'by-issue-maker', // label already created
       resLocals: res.locals, // for showing in issue description.
@@ -124,6 +124,7 @@ function requestErrHandler(err, req, res, next){
 ```
 
 
+---
 
 Version of [ts-np-generator](https://github.com/vajahath/generator-ts-np) used: [![used version of ts-np generator](https://img.shields.io/badge/ts--np-v2.0.5-a5a5a5.svg?style=flat-square)](https://github.com/vajahath/generator-ts-np)
 

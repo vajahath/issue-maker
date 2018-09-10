@@ -3,32 +3,16 @@ language: node_js
 node_js:
 - node
 - lts/*
-
 script:
 - npm run test
-
-# ------------------------------------------------------------------------
-# To enable Continuous Deployment (CD), uncommnet following code
-# ------------------------------------------------------------------------
-
-# deploy:
-#   provider: npm
-#   skip_cleanup: true
-#   email: #<YOUR NPM EMAIL>
-#   # -----------------------------------------------------------------------
-#   # To obtain YOUR ENCRYPTED AUTH KEY,
-#   # Install travis cli: https://github.com/travis-ci/travis.rb#installation
-#   # Login to npmjs.com and go to Tokens page under your profile
-#   # (https://www.npmjs.com/settings/<npm_username>/tokens)
-#   # create new auth token with publish previllage
-#   # copy the AUTH_TOKEN
-#   # open terminal and cd to here and use the following command.
-#   # $ travis encrypt YOUR_AUTH_TOKEN --add deploy.api_key
-#   # -----------------------------------------------------------------------
-#   api_key:
-#     secure: #<YOUR ENCRYPTED AUTH KEY>
-#   on:
-#     node_js: lts/*
-#     tags: true
-#     branch: master
-# after_deploy: echo 'deploying to npm!'
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: vajuoff.1@gmail.com
+  api_key:
+    secure: g2fhVWYsYWV4B3nHVr42fp/3LVj2QTymvfyN3vVO2ElJx2Ic8C18cz2ccJAZ52+s2NUfkjMEJ1lWg3EkHdRQvg8daFq30orcIMEzItdtNhe6AWKkxRwi4glXbpCT6pWOUHWwq7iyDV+/2E3LeNf8H9X9ZQLyRNCPkFnyG4jfawwRqymX+uVxMud8xY6DC68FkktrN4lrt2zY2z3eKOjOk9jSZSGoFs5jV2oy/JiXh/CqMRJQnfdZvhybXqMK2b0QvA+Evv9D7R2tyDAx7ahydf6HqyaS9lM/uBDbY0ldz1UdQjeyJ4+5IEzqaL39uezUl7a1JI/E3vobVj3BKy6XgBNXYgOjpxLOmla2VwiZK5JvXTMJRPqA63gfYOJDUpSjKsebosNs/RBzLsNQe63ivuGbo60uslEhXXALEeig+oqLplIZSJ2NJl+rCp6Ti2ZDCGD13Ux4flhrbkXBt958G364v+y5WiPcpUHYkmj3+Oy/XS08octIf0tAc5/hu0+LXl0cM7EFjzAbWMVwMx6+ghnp75xE60tz/VhEwIsSTlZKNdDYnY93c/ZXSbVv0sANatap0gWw+JE2NiuWmiS8iOquzcSIb/JAvjo2DuQF8zqYH8Anhuon+9bx/YEsrAuqtoVyJME3UTZrA5UrKkSRHY3rzSBH6xe47EKeOfRU/c8=
+  on:
+    node_js: lts/*
+    tags: true
+    branch: master
+after_deploy: echo 'deploying to npm!'

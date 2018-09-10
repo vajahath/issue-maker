@@ -1,5 +1,5 @@
 # issue-maker
-No, this will not be an issue maker. I promise.
+No, this will not be an issue maker. Promise.
 
 [![npm](https://img.shields.io/npm/v/issue-maker.svg)](https://www.npmjs.com/package/issue-maker)
 [![Travis](https://img.shields.io/travis/vajahath/issue-maker.svg)](https://travis-ci.org/vajahath/issue-maker)

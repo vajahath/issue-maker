@@ -1,7 +1,7 @@
 {
   "name": "issue-maker",
   "version": "1.0.1",
-  "description": "No, this will not be an issue maker. I promise.",
+  "description": "No, this will not be an issue maker. Promise.",
   "homepage": "https://github.com/vajahath/issue-maker#readme",
   "author": "Vajahath Ahmed <vajuoff.1@gmail.com> (https://twitter.com/vajahath7)",
   "main": "dist/src/index.js",

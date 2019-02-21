@@ -1,4 +1,6 @@
 import * as serializeError from 'serialize-error';
+import { IssueMaker } from '../';
+import { Request } from 'express';
 
 export enum ExpressRequestErrorType {
   'NOT_FOUND',
@@ -53,14 +55,23 @@ export class ExpressRequestError {
   public statusCode: number;
   public message: string;
   public details: any;
+  public reported: boolean;
 
   private errType: ExpressRequestErrorType;
+  private expressIssueReporter: {
+    reporter: IssueMaker;
+    req: Request;
+  };
 
   constructor(
     errorType: ExpressRequestErrorType,
     details?: any,
     statusCode?: number,
     message?: string,
+    expressIssueReporter?: {
+      reporter: IssueMaker;
+      req: Request;
+    },
   ) {
     // for accessing member functions
     this.errType = errorType;
@@ -69,6 +80,14 @@ export class ExpressRequestError {
     this.statusCode = statusCode || this.getStatusCode();
     this.message = message || this.getMessage();
     this.details = serializeError(details);
+
+    if (expressIssueReporter) {
+      this.expressIssueReporter = expressIssueReporter;
+      this.reportIssue();
+      this.reported = true;
+    } else {
+      this.reported = false;
+    }
   }
 
   private getStatusCode() {
@@ -78,4 +97,14 @@ export class ExpressRequestError {
   private getMessage() {
     return ERROR_DEFINITIONS[this.errType].message;
   }
+
+  private reportIssue() {
+    // this.expressIssueReporterValidation();
+    this.expressIssueReporter.reporter.expressReportError(
+      this.expressIssueReporter.req,
+      this,
+    );
+  }
+
+  // private expressIssueReporterValidation() {}
 }

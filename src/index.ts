@@ -44,6 +44,11 @@ export class IssueMaker {
   private projectId: string | number;
   private privateToken: string;
 
+  private labels?: 'string';
+  private resLocals?: any;
+  private databaseHost?: string;
+  private databaseName?: string;
+
   constructor(params: IIssueMakerParams) {
     // selectively import
     if (params.service === 'gitlab') {
@@ -53,6 +58,11 @@ export class IssueMaker {
     this.endPoint = params.endPoint;
     this.projectId = params.projectId;
     this.privateToken = params.privateToken;
+    // db details
+    this.labels = params.labels;
+    this.resLocals = params.resLocals;
+    this.databaseHost = params.databaseHost;
+    this.databaseName = params.databaseName;
   }
 
   public async reportIssue(params: IReportIssueParams) {
@@ -69,9 +79,20 @@ export class IssueMaker {
   public async expressReportError(
     req: Request,
     err: ExpressRequestError,
-    options: IExpressRequestErrorParser,
+    options?: IExpressRequestErrorParser,
   ) {
     const issueMakerId = issueIdMaker(req, err);
+
+    options = Object.assign(
+      {},
+      {
+        labels: this.labels,
+        databaseHost: this.databaseHost,
+        databaseName: this.databaseName,
+        resLocals: this.resLocals,
+      },
+      options,
+    );
 
     // search for issue
     const searchResult = await this.service.searchForIssue(
